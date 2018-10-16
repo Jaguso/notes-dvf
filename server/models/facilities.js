@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Facilities = sequelize.define('Facilities', {
+    id: { 
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID, 
+      defaultValue: DataTypes.UUIDV4 
+    },
     size: {type: DataTypes.ENUM, values: ["S", "M", "L", "XL"]},
     num_rooms: DataTypes.INTEGER,
     num_bathrooms: DataTypes.INTEGER,

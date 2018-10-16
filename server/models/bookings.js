@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Bookings = sequelize.define('Bookings', {
+    id: { 
+      allowNull: false,
+      primaryKey: true,
+      type: DataTypes.UUID, 
+      defaultValue: DataTypes.UUIDV4 
+    },
     start_date: DataTypes.DATE,
     due_date: DataTypes.DATE,
     status: {type: DataTypes.ENUM, values: ["CF", "CC", "PN"]},
