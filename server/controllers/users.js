@@ -1,4 +1,4 @@
-const {Users} = require('../models');
+const {Users} = require('../models'); // esto trae Users de models/Users
 const createToken = require('../resolvers/createToken');
 
 const signUp = async(req, res) => { 
@@ -35,5 +35,6 @@ const logIn = async(req, res) => {
 
 
 module.exports = {
-    signUp 
+    signUp,
+    logIn 
 }
