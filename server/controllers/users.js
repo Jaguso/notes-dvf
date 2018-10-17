@@ -1,5 +1,5 @@
 const {Users} = require('../models');
-
+const createToken = require('../resolvers/createToken');
 
 const signUp = async(req, res) => { 
     
@@ -23,11 +23,12 @@ const logIn = async(req, res) => {
 
     user.comparePassword(req.body.password).then((result) => {
         if(result) {
-
+            let token = await createToken(user)
+            return res.status(200).json({"message": "User logged successfully", token})
         } else {
             return res.status(400).json({"message": "Password is incorrect"})
         }
-        
+
     }).catch((err) => console.log(err))
 }
 //
