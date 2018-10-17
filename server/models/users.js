@@ -56,6 +56,18 @@ Users.beforeCreate((user, options) => {
 
 })
 
+  // clase 3
+  Users.prototype.comparePassword = function (testPassword) {
+    let password = this.password
+    return new Promise(function(resolve, reject) {
+      bcrypt.compare(testPassword, password, function(err, result) {
+        if(err) reject(err)
+        resolve(result)
+      })
+    })
+  }
+  //
+
   Users.associate = function(models) {
     Users.hasMany(models.Houses);
     Users.hasMany(models.Bookings);

@@ -15,6 +15,22 @@ const signUp = async(req, res) => {
 
     return res.status(201).json({message: "User created", id: user.id})
 }
+// clase 3
+const logIn = async(req, res) => {
+    
+    let user = await Users.find({where: {email: req.body.email}})
+    if(!user) return res.status(404).json({"message": "User does not exist"})
+
+    user.comparePassword(req.body.password).then((result) => {
+        if(result) {
+
+        } else {
+            return res.status(400).json({"message": "Password is incorrect"})
+        }
+        
+    }).catch((err) => console.log(err))
+}
+//
 
 
 module.exports = {
