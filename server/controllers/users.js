@@ -21,7 +21,7 @@ const logIn = async(req, res) => {
     let user = await Users.find({where: {email: req.body.email}})
     if(!user) return res.status(404).json({"message": "User does not exist"})
 
-    user.comparePassword(req.body.password).then((result) => {
+    user.comparePassword(req.body.password).then(async(result) => {
         if(result) {
             let token = await createToken(user)
             return res.status(200).json({"message": "User logged successfully", token})
