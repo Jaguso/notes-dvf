@@ -16,9 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Bookings.associate = function(models) {
-    Bookings.belongsTo(models.Users);
-    Bookings.belongsTo(models.Houses);
-    Bookings.hasOne(models.Houses);
+    Bookings.belongsTo(models.Users, {foreignKey: "userId"});
+    Bookings.belongsTo(models.Houses, {foreignKey: "houseId"});
+    Bookings.hasOne(models.Comments);
   };
   return Bookings;
 };

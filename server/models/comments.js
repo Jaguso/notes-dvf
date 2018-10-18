@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   
   Comments.associate = function(models) {
-    Comments.belongsTo(models.Bookings);
+    Comments.belongsTo(models.Bookings, {foreignKey: "bookingId"});
   };
   return Comments;
 };

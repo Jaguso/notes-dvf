@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Houses.associate = function(models) {
-    Houses.belongsTo(models.Users);
+    Houses.belongsTo(models.Users, {foreignKey: "userId"});
     Houses.hasOne(models.Addresses);
     Houses.hasOne(models.Facilities);
     Houses.hasMany(models.Bookings);
