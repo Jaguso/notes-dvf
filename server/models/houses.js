@@ -17,10 +17,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Houses.associate = function(models) {
-    Houses.belongsTo(models.Users, {foreignKey: "userId"});
-    Houses.hasOne(models.Addresses);
-    Houses.hasOne(models.Facilities);
-    Houses.hasMany(models.Bookings);
+    Houses.belongsTo(models.Users, {foreignKey: "userId", as: "user"}); //también tenemos que poner acá los alias
+    Houses.hasOne(models.Addresses, {foreignKey: "houseId", as: "address"});
+    Houses.hasOne(models.Facilities, {foreignKey: "houseId", as: "facilities"});
+    Houses.hasMany(models.Bookings, {foreignKey: "houseId"});
   }
   return Houses;
 };

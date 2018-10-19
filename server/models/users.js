@@ -69,7 +69,7 @@ Users.beforeCreate((user, options) => {
   //
 
   Users.associate = function(models) {
-    Users.hasMany(models.Houses);
+    Users.hasMany(models.Houses, {foreignKey: "userId"});
     Users.hasMany(models.Bookings);
   };
   return Users;
