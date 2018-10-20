@@ -1,4 +1,4 @@
-const {Users} = require('../models'); // esto trae Users de models/Users
+const {Users, Bookings} = require('../models'); // esto trae Users de models/Users
 const createToken = require('../resolvers/createToken');
 
 const signUp = async(req, res) => { 
@@ -34,7 +34,31 @@ const logIn = async(req, res) => {
 //
 
 
+const me = async(req, res) => {
+
+    const profile = await Users.findOne(
+        {where: {id:req.user.id},
+        attributes: {exclude: ["password"]}, 
+        include: [
+            {
+                model: Bookings,
+                as: "bookings"
+            }
+        ]   
+
+    }
+    )
+
+
+    if(!profile) res.status(404).json({message: "User not found"})
+
+    res.status(200).json(profile)
+
+
+}
+
 module.exports = {
     signUp,
-    logIn 
+    logIn,
+    me 
 }

@@ -37,7 +37,7 @@ const getAllHouses = async(req, res) => {
             as: "address"
         }
     ]})
-
+// los as son para que regrese los nombres con ese alias en el json
     return res.status(200).json(allHouses);
 }
 

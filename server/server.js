@@ -10,6 +10,7 @@ const app = express();
 
 const port = process.env.PORT || 8080;
 
+const {errors} = require("celebrate");
 
 // éstos son middlewares
 app.use(morgan('dev'));
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/api/v1', routes);
+app.use(errors()); //éste tiene que ser el último app.use
 
 app.get('/', (req, res) => {
     res.send("Everything Works :)")

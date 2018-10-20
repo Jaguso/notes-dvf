@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     start_date: DataTypes.DATE,
     due_date: DataTypes.DATE,
-    status: {type: DataTypes.ENUM, values: ["CF", "CC", "PN"]},
+    status: {type: DataTypes.ENUM, values: ["CF", "CC", "PN"], defaultValue: "PN"}, //CF=confirmed CC=cancelled PN=pending
     total_price: DataTypes.DECIMAL(10, 2),
     num_guest: DataTypes.INTEGER,
     paypal_confirmation: DataTypes.STRING
