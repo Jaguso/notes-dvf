@@ -12,6 +12,10 @@ const port = process.env.PORT || 8080;
 
 const {errors} = require("celebrate");
 
+const cors = require('cors');
+//con cors hay waitlists y blacklists (en las primeras decimos que servidores queremos que entren y la segunda qué servidores queremos que no entren)
+
+
 // éstos son middlewares
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -19,6 +23,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/api/v1', routes);
 app.use(errors()); //éste tiene que ser el último app.use
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send("Everything Works :)")
