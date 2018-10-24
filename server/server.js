@@ -31,4 +31,6 @@ app.get('/', (req, res) => {
 
 app.listen(port, e => console.log(`works in port ${port}`));
 
+module.exports = app;
+
 

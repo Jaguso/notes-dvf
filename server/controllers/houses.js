@@ -13,7 +13,7 @@ const createHouse = async(req, res) => {
         const facilities = await Facilities.create({...req.body.facilities, houseId: house.id})
        
         if(!facilities) res.status(400).json({"message": "Error to create facilities"})
-        return res.status(200).json(house)
+        return res.status(201).json(house)
     } catch(e) {
         console.log(e)
         return res.status(400).json(e)
